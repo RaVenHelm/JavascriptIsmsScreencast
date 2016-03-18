@@ -1,0 +1,30 @@
+{
+  "name": "javascript-isms",
+  "description": "Tutorial/Screencast explaining scope and other Javascript \"isms\"",
+  "main": "gulpfile.js",
+  "authors": [
+    "T.C. Enders <tybEnders@outlook.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Javascript",
+    "Tutorial",
+    "Screencast"
+  ],
+  "homepage": "https://github.com/RaVenHelm/JavascriptIsmsScreencast",
+  "moduleType": [
+    "es6"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "prism": "^1.4.1"
+  }
+}

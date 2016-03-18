@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript "Isms" - T.C. Enders</title>
+    <link rel="stylesheet" href="lib/semantic/dist/semantic.min.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="lib/prism/themes/prism-tomorrow.css" type="text/css" charset="utf-8">
+</head>
+<body>
+    <main class="main">
+        <div class="ui container">
+            <h1 class="ui header">Javascript Scope and "Isms"</h1>
+            <section id="basic-scope" class="ui blue segment">
+                <h2 class="ui header">Basic Scope</h2>
+                <pre>
+                    <code class="language-javascript">
+                        function MyFunc() {
+                            a = 42;
+                        }
+
+                        console.log(a);
+                    </code>
+                </pre>
+            </section>
+
+            <section id="js-classes" class="ui green segment">
+                <h2 class="ui header">Javascript (ES5) Classes</h2>
+                <pre>
+                    <code class="language-javascript">
+                        function Car(make, model, year, color) {
+                            this.make = make;
+                            this.model = model;
+                            this.year = year;
+                            this.color = color;
+                        }
+
+                        Car.prototype.start = function(delay) {
+                            setTimeout(function() {
+                                console.log(this.getFullCarName() + ' started!');
+                            }.bind(this));
+                        }
+
+                        Car.prototype.getFullCarName() = function() {
+                            return this.year + this.make + this.model;
+                        }
+
+                        Car.prototype.changeColor = function(newColor) {
+                            this.color = newColor;
+                        }
+
+                        var myCar = new Car('Chevrolet', 'Corvette Stingray', 2015, 'Red');
+                        myCar.start();
+                    </code>
+                </pre>
+            </section>
+        </div>
+    </main>
+    <!-- Making Semantic happy -->
+    <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="lib/semantic/dist/semantic.min.js" charset="utf-8"></script>
+    <script src="lib/prism/prism.js" charset="utf-8"></script>
+
+    <script src="es2015/app.min.js" charset="utf-8"></script>
+</body>
+</html>
