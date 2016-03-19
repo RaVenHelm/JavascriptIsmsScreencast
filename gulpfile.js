@@ -9,7 +9,12 @@ var gulp = require('gulp'),
     sourcestream = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
     uglify = require('gulp-uglify'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer'),
+    precss = require('precss'),
+    cssnano = require('cssnano'),
+    animation = require('postcss-animation');
 
 gulp.task('es5', function() {
     gulp.src('./src/js/**/*.js')
@@ -45,6 +50,18 @@ gulp.task('html', function() {
     gulp.src('./*.html');
 });
 
+gulp.task('css', function() {
+    gulp.src('./src/css/style.css')
+        .pipe(postcss([
+            precss(),
+            animation(),
+            autoprefixer(),
+            cssnano()
+        ]))
+        .on('error', gutil.log)
+        .pipe(gulp.dest('./css'));
+});
+
 gulp.task('watch', function() {
     gulp.watch('./src/js/**/*.js', ['es5']);
     gulp.watch('./src/es2015/**/*.js', ['babel']);
@@ -59,4 +76,4 @@ gulp.task('webserver', function() {
         }));
 });
 
-gulp.task('default', ['html', 'es5', 'webserver', 'watch']);
+gulp.task('default', ['html', 'es5', 'babel', 'css', 'webserver', 'watch']);
